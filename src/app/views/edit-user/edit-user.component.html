@@ -1,0 +1,29 @@
+<form  class="mt-5 container" (ngSubmit)="updataPost(loginForm.value)" [formGroup]="loginForm" >
+    <div class="mb-3">
+        <label for="userName" class="form-label">User name</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="userName"
+            name="username"
+            placeholder="Enter your User name"
+            formControlName="username"
+            [(ngModel)]="users.username"
+        >
+        <label for="company" class="form-label">company </label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="company" 
+            name="company"
+            placeholder="Enter your company name"
+            formControlName="company"
+            [(ngModel)]="users.company?.name!"
+        >
+    </div>
+    <button 
+        type="submit" 
+        class="btn btn-primary"
+    >
+        Submit
+    </button>

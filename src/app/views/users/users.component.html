@@ -1,0 +1,48 @@
+<form class="mt-5 container" (ngSubmit)="addUser(loginForm.value)" [formGroup]="loginForm">
+    <div class="mb-3">
+        <label for="userName" class="form-label">User name</label>
+        <input type="text" class="form-control" id="userName" name="username" placeholder="Enter your User name"
+            formControlName="username">
+        <div class="error d-flex justify-content-center"
+            *ngIf="myValues['username'].touched && myValues['username'].invalid">
+            <div *ngIf="myValues['username'].errors?.['required']">
+                User name is required
+            </div>
+        </div>
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
+            formControlName="email">
+        <div class="error d-flex justify-content-center" *ngIf="myValues['email'].touched && myValues['email'].invalid">
+            <div *ngIf="myValues['email'].errors?.['required']">
+                Email is required
+            </div>
+            <div *ngIf="myValues['email'].errors?.['email']">
+                Plz, Enter valied email
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+        Submit
+    </button>
+</form>
+<br>
+<br>
+<br>
+<br>
+<div class="card" style="width: 20rem; float: left;" *ngFor="let user of users;let i=index">
+    <div class="card-body">
+        <h5 class="card-title">{{user.username}}</h5>
+        <p class="card-text">company: {{user.company?.name}}</p>
+        <p class="card-text">email: {{user.email}}</p>
+        <p class="card-text">city: {{user.address?.city}}</p>
+        <p class="card-text">lat: {{user.address?.geo.lat}}</p>
+        <p class="card-text">lng: {{user.address?.geo.lng}}</p>
+        <a routerLink="/userInfo/{{user.id}}" class="btn btn-warning ">More information</a>
+        <br>
+        <a routerLink="" class="btn btn-primary  btn-danger " (click)="deleteUser(user.id,i)">Delete</a>
+        <br>
+        <a routerLink="/edit/{{user.id}}"  class="btn btn-sm btn-primary ">Edit</a>
+    </div>
+</div>
+<br>
+<br>
